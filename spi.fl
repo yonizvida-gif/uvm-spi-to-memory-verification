@@ -15,4 +15,4 @@ rtl/spi_to_memory.sv
 
 tb/assertions/spi_to_memory_assertions.sv
 
-tb/top.sv
+tb/tb_top.sv
