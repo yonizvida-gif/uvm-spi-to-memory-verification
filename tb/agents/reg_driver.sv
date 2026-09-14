@@ -54,7 +54,7 @@ class reg_driver extends uvm_driver #(reg_tran);
            // READ
            if(req.kind == 1'b1) begin
  
-	       rsp = reg_tran::type_id::create("rsp");
+	       	   rsp = reg_tran::type_id::create("rsp");
                rsp.set_id_info(req);
 
                rsp.kind    = req.kind;
