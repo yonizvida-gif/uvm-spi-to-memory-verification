@@ -46,7 +46,7 @@ The UVM SPI agent behaves as a reactive SPI slave and drives `MISO` in response 
 
 ## Verification Architecture
 
-The environment contains two UVM agents:
+The environment contains two UVM agents.
 
 ### SPI Agent
 
@@ -146,7 +146,7 @@ Handshake WRITE
 
 The scoreboard learns the expected data directly from the SPI monitor and compares it against the values later read from the channel registers.
 
-![Basic end-to-end waveform](docs/images/basic_end_to_end_waveform.png)
+![Basic end-to-end waveform](docs/basic_end_to_end_waveform.png.jpeg)
 
 ---
 
@@ -169,11 +169,11 @@ Channel3
 
 Each register is read before and after the write attempt to verify that software writes do not modify the stored SPI data.
 
-![Functional coverage - RO test](docs/images/functional_coverage_ro_test.png)
+![Functional coverage - RO test](docs/functional_coverage_ro_test.png.jpeg)
 
 The register address/operation cross reaches full coverage in this test.
 
-![Register cross coverage](docs/images/register_cross_coverage.png)
+![Register cross coverage](docs/register_cross_coverage.png.jpeg)
 
 ---
 
@@ -205,11 +205,11 @@ The test starts a normal acquisition and then writes `Handshake = 1` again while
 
 The environment verifies that the second trigger does not restart the reference model or create an additional SPI acquisition.
 
-![Busy retrigger waveform](docs/images/busy_retrigger_waveform.png)
+![Busy retrigger waveform](docs/busy_retrigger_waveform.png.jpeg)
 
 A successful run completes with no UVM errors or fatals.
 
-![Busy test pass](docs/images/uvm_busy_test_pass.png)
+![Busy test pass](docs/uvm_busy_test_pass.png.jpeg)
 
 ---
 
@@ -217,7 +217,7 @@ A successful run completes with no UVM errors or fatals.
 
 The `spi_to_memory_scoreboard` receives transactions from both monitors.
 
-### SPI side
+### SPI Side
 
 The scoreboard:
 
@@ -226,7 +226,7 @@ The scoreboard:
 - Detects illegal or unexpected SPI transactions
 - Detects extra SPI traffic after an acquisition is complete
 
-### Register side
+### Register Side
 
 The scoreboard:
 
@@ -330,7 +330,7 @@ The assertions check:
 
 The DUT source files are not modified to add the assertions.
 
-![Busy test assertion coverage](docs/images/busy_test_assertion_coverage.png)
+![Busy test assertion coverage](docs/busy_test_assertion_coverage.png.jpeg)
 
 The captured assertion run completed with zero assertion failures.
 
@@ -390,16 +390,15 @@ uvm-spi-to-memory-verification/
 |   `-- top.sv
 |
 |-- docs/
-|   `-- images/
-|       |-- basic_end_to_end_waveform.png
-|       |-- busy_retrigger_waveform.png
-|       |-- functional_coverage_ro_test.png
-|       |-- register_cross_coverage.png
-|       |-- uvm_busy_test_pass.png
-|       `-- busy_test_assertion_coverage.png
+|   |-- basic_end_to_end_waveform.png.jpeg
+|   |-- busy_retrigger_waveform.png.jpeg
+|   |-- functional_coverage_ro_test.png.jpeg
+|   |-- register_cross_coverage.png.jpeg
+|   |-- uvm_busy_test_pass.png.jpeg
+|   `-- busy_test_assertion_coverage.png.jpeg
 |
 |-- spi.fl
-|-- Makefile
+|-- makefile
 `-- README.md
 ```
 
@@ -409,37 +408,37 @@ uvm-spi-to-memory-verification/
 
 The project is configured for Synopsys VCS and Verdi.
 
-### Basic test
+### Basic Test
 
 ```bash
 make run TEST=spi_to_memory_basic_test
 ```
 
-### Read-only test
+### Read-Only Test
 
 ```bash
 make run TEST=spi_to_memory_ro_test
 ```
 
-### Repeat test
+### Repeat Test
 
 ```bash
 make run TEST=spi_to_memory_repeat_test
 ```
 
-### Busy retrigger test
+### Busy Retrigger Test
 
 ```bash
 make run TEST=spi_to_memory_busy_test
 ```
 
-### Open simulation GUI
+### Open Simulation GUI
 
 ```bash
 make gui TEST=spi_to_memory_basic_test
 ```
 
-### Run coverage and open in Verdi
+### Run Coverage and Open in Verdi
 
 ```bash
 make cov_gui TEST=spi_to_memory_ro_test
